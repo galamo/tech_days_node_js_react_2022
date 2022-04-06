@@ -318,3 +318,9 @@ const cars = [{
 ]
 
 ```
+
+
+# running the api
+1. git pull
+2. run `npm install` inside apps/api
+3. run `npm run all`
