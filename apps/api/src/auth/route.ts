@@ -20,13 +20,16 @@ router.post("/login", (req, res, next) => {
     const { userName, password } = body;
     const user = getUser(usersJson, userName, password)
     if (user) {
-        const result = jwt.sign({
-            exp: Math.floor(Date.now() / 1000) + (60 * 60),
-            data: user.userName
-        }, process.env.SECRET);
-        return res.json({ message: "login succeeded", token: result })
+        setTimeout(() => {
+            const result = jwt.sign({
+                exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                data: user.userName
+            }, process.env.SECRET);
+            return res.json({ message: "login succeeded", token: result })
+        }, 3000);
+    } else {
+        return next(new Error("Not authorized"))
     }
-    return next(new Error("Not authorized"))
 
 })
 

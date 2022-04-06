@@ -6,9 +6,12 @@ import carsRouter from "./cars/route"
 import authRouter from "./auth/route"
 import dotenv from "dotenv"
 import bodyParser from "body-parser"
+import cors from "cors"
 dotenv.config()
 
 const app = express()
+
+app.use(cors())
 app.use(bodyParser.json())
 app.use(addRequestId)
 

@@ -10,7 +10,9 @@
     "all": "concurrently -k -p \"[{name}]\" -n \"TypescriptCompiler,serverApp\" -c \"blue,red\"  \"npm run build-watch\" \"npm run start-dev\""
   },
   "dependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "concurrently": "^6.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.0",
