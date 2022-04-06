@@ -25,4 +25,18 @@ const cars = [{
 console.log("Start script")
 
 
+function getCarsFromServer(callback) {
+    if (typeof callback !== 'function') return;
+    setTimeout(() => {
+        callback(cars)
+    }, 3000)
+}
+
+// data => cars 
+getCarsFromServer((data) => {
+    if (!Array.isArray(data)) return;
+    data.map(car => console.log(car))
+})
+
+
 console.log("End script")
