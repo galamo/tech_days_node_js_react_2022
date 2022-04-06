@@ -1,7 +1,3 @@
-const axios = require("axios")
-
-
-
 
 const cars = [{
     "Name": "chevrolet chevelle malibu",
