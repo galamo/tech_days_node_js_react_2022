@@ -1,18 +1,18 @@
 
 import express, { Request, Response, NextFunction } from "express"
 import { addRequestId } from "./middleware/addRequestId"
+import { authMiddleware } from "./middleware/authMiddelware"
+import carsRouter from "./cars/route"
+import authRouter from "./auth/route"
+import dotenv from "dotenv"
+import bodyParser from "body-parser"
+dotenv.config()
+
 const app = express()
-
-const port = 3500
-
-// jwt 
-
+app.use(bodyParser.json())
 app.use(addRequestId)
-app.use((req, res, next) => {
-    const apiKey = req.query.apiKey;
-    if (req.query.apiKey === "apiKeySecret") return next()
-    res.status(401).send("Api key - unauthorized")
-})
+
+app.use("/auth", authRouter)
 
 app.get("/health-check", (req: Request, res: Response, next: NextFunction) => {
     res.append("requestId", "test-request-id")
@@ -20,13 +20,17 @@ app.get("/health-check", (req: Request, res: Response, next: NextFunction) => {
     res.send("Server is running")
 })
 
-app.get("/cars", (req: Request, res: Response, next: NextFunction) => {
-    res.json({ result: ["car1", "car2"] })
+app.use(authMiddleware)
+app.use("/cars", carsRouter)
+
+
+app.use((error, req, res, next) => {
+    console.log(error.message, req.requestId)
+    res.status(400).json({ message: "Something went wrong" })
 })
 
-
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log("#########################")
-    console.log(`Listening to port ${port}`)
+    console.log(`Listening to port ${process.env.PORT}`)
     console.log("##########################")
 })

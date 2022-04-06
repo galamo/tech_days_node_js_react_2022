@@ -3,7 +3,7 @@
         "module": "commonjs",
         "outDir": "dist",
         "target": "ES2015",
-        "baseUrl": "src",
+        "baseUrl": "./src",
         "resolveJsonModule": true,
         "esModuleInterop": true
     },

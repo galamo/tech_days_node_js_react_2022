@@ -14,6 +14,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7",
     "ts-node": "^10.0.0",
