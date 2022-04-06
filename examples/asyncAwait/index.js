@@ -1,3 +1,8 @@
+const axios = require("axios")
+
+
+
+
 const cars = [{
     "Name": "chevrolet chevelle malibu",
     "Miles_per_Gallon": 18,
@@ -22,7 +27,6 @@ const cars = [{
 }]
 
 
-console.log("Start script")
 
 const Types = {
     number: 'number'
@@ -42,14 +46,28 @@ function getCarsFromServer(hp) {
 
 // resolve => then
 // reject => catch
-getCarsFromServer(150).then(successHandler).catch(errorHandler)
-getCarsFromServer("RejectMe").then(successHandler).catch(errorHandler)
-
-function successHandler(data) {
-    console.log(data)
-}
-function errorHandler(ex) {
-    console.log(ex)
+// async await 
+async function main() {
+    console.log("main started ")
+    const result = await getCarsFromServer(120)
+    // console.log(result)
+    console.log("Real end of script")
 }
 
+console.log("Start script")
+main()
+main()
+main()
 console.log("End script")
+
+
+
+
+
+
+
+
+
+
+
+
